@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>三張塔羅抽卡</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="screen intro-screen is-active" id="introScreen" aria-labelledby="introTitle">
+        <div class="intro-visual">
+          <div class="poster-frame">
+            <button class="poster-card-button" id="introCardButton" type="button" aria-label="點亮牌背">
+              <img class="poster-card" src="./assets/tarot/CARD_BACK_SIMPLE.png" alt="" />
+            </button>
+          </div>
+          <div class="sparkle-burst" id="sparkleBurst" aria-hidden="true"></div>
+          <span class="pixel-charm pixel-star-one"></span>
+          <span class="pixel-charm pixel-moon"></span>
+          <span class="pixel-charm pixel-crystal"></span>
+          <span class="pixel-charm pixel-star-two"></span>
+        </div>
+        <div class="intro-copy">
+          <p class="eyebrow">A tiny note from today</p>
+          <h1 id="introTitle">今天的宇宙小紙條</h1>
+          <p class="lead">
+            把這次抽卡當成一個輕鬆的小停頓。想著你最近在意的事，從牌背裡選出三張牌，看看今天可以帶走哪一點靈感、勇氣或提醒。
+          </p>
+          <div class="question-panel">
+            <label for="questionInput">先把想問的事放在這裡</label>
+            <textarea
+              id="questionInput"
+              rows="3"
+              placeholder="例如：今天我可以用什麼心情面對這件事？"
+            ></textarea>
+          </div>
+          <div class="notice-panel" role="note">
+            <h2>使用前提醒</h2>
+            <p>
+              塔羅解讀適合作為自我覺察、整理思緒與激發靈感的小工具，不需要把它看得太沉重。若問題涉及醫療、法律、財務或重大決策，請搭配可靠資訊與專業建議。
+            </p>
+          </div>
+          <div class="intro-actions">
+            <button class="primary-button" id="enterButton" type="button">
+              我已閱讀，開始抽卡
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen draw-screen" id="drawScreen" aria-labelledby="drawTitle">
+        <header class="draw-header">
+          <div>
+            <p class="eyebrow">Choose intuitively</p>
+            <h1 id="drawTitle">選擇三張牌</h1>
+          </div>
+          <p class="draw-status" id="drawStatus">第 1 張：現在的能量</p>
+        </header>
+
+        <div class="selected-row" id="selectedRow" aria-label="已抽出的牌">
+          <div class="selected-slot" data-label="現在"></div>
+          <div class="selected-slot" data-label="課題"></div>
+          <div class="selected-slot" data-label="指引"></div>
+        </div>
+
+        <div class="deck-stage">
+          <button class="icon-button" id="prevButton" type="button" aria-label="往左選牌">‹</button>
+          <div class="deck-window" id="deckWindow">
+            <div class="floating-deck" id="floatingDeck" aria-label="可選擇的塔羅牌"></div>
+          </div>
+          <button class="icon-button" id="nextButton" type="button" aria-label="往右選牌">›</button>
+        </div>
+
+        <div class="draw-actions">
+          <button class="secondary-button" id="shuffleButton" type="button">重新洗牌</button>
+          <button class="primary-button" id="drawButton" type="button">翻開這張牌</button>
+        </div>
+      </section>
+
+      <section class="screen reading-screen" id="readingScreen" aria-labelledby="readingTitle">
+        <header class="reading-header">
+          <p class="eyebrow">Your reading</p>
+          <h1 id="readingTitle">三張牌解籤</h1>
+          <p>以下解讀以「現在、課題、指引」為牌位。你可以把它當成一面鏡子，觀察哪些字句最有共鳴。</p>
+        </header>
+        <div class="reading-grid" id="readingGrid"></div>
+        <div class="summary-panel" id="summaryPanel"></div>
+        <div class="reading-actions">
+          <button class="secondary-button" id="homeButton" type="button">回首頁</button>
+          <button class="primary-button" id="restartButton" type="button">重新抽一次</button>
+        </div>
+      </section>
+
+      <div class="reading-modal" id="readingModal" aria-hidden="true">
+        <button class="modal-backdrop" id="modalBackdrop" type="button" aria-label="關閉放大解籤"></button>
+        <section
+          class="modal-panel"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modalTitle"
+          aria-describedby="modalText"
+        >
+          <button class="modal-close" id="modalClose" type="button" aria-label="關閉">×</button>
+          <img id="modalImage" src="./assets/tarot/CARD_BACK_SIMPLE.png" alt="" />
+          <div class="modal-copy">
+            <p class="position" id="modalPosition"></p>
+            <h2 id="modalTitle"></h2>
+            <p id="modalText"></p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
