@@ -578,7 +578,7 @@ selectedRow.addEventListener("drop", (event) => {
 });
 
 deckWindow.addEventListener("pointerdown", (event) => {
-  if (event.target.closest(".tarot-card")) return;
+  if (event.pointerType === "mouse" && event.target.closest(".tarot-card")) return;
   dragStartX = event.clientX;
   dragRemainder = 0;
   deckWindow.classList.add("is-dragging");
